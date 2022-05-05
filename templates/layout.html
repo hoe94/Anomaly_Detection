@@ -5,13 +5,12 @@
     </div>
 
     <div id="chart1"></div>
-    <h2>{{fig1}}</h2>
 
     <!--plotly CDN-->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script type="text/javascript">
         var graphDiv = document.getElementById('chart1')
-        var line_graph = {{fig1}}
+        var line_graph = {{ fig1 | safe}}
         Plotly.plot(graphDiv, line_graph, {});
        //Plotly.plot(graphDiv, /* JSON object */ {
        //    "data": [{ "y": [1, 2, 3] }],
