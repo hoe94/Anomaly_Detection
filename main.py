@@ -71,7 +71,7 @@ table = go.Table(
     columnwidth = [1, 2],
     # columnorder=[0, 1, 2,],
     header = dict(height = 20,
-                values = [['<b>Date</b>'], ['<b>Close</b>'], ['<b>Percentage_Change%</b>']],
+                values = [['<b>Date</b>'], ['<b>Closing Stock Price</b>'], ['<b>Percentage_Change%</b>']],
                 line = dict(color = '#121212'),
                 font = dict(color=['rgb(45, 45, 45)'], size=14),
                 fill = dict(color='#797cf6')),
@@ -98,7 +98,7 @@ axis = dict(
     
 layout = dict(
     width=2100,
-    height=800,
+    height=600,
     autosize=False,
     title= 'Line Graph & Table about Maybank',
     margin=dict(t=75),

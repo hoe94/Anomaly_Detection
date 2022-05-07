@@ -92,8 +92,14 @@ df = df.merge(pred.rename('Anomaly_Flag'), left_index = True, right_index = True
 date_column = mbb['Date'].reset_index(drop = True)
 df = df.merge(date_column.rename('Date'), left_index = True, right_index = True)
 df = df[['Date','Open', 'High', 'Low', 'Close', 'Adj_Close', 'Volume', 'Anomaly_Flag']]
+
+#df['Yesterday_Close'] = 0.2
+#df['Percentage_Change'] = 0.2
+#for i in range(0,2):  
+#    df['Yesterday_Close'][i] = mbb_2days.iloc[i+1]['Close']
+
 df['Yesterday_Close'] = mbb_2days.iloc[1]['Close']
-df['Percentage_Change'] = ((df['Close'] - df['Yesterday_Close']) / df['Close']) * 100
+df['Percentage_Change']= ((df['Close'] - df['Yesterday_Close']) / df['Close']) * 100
 df['Percentage_Change'] = np.round(df['Percentage_Change'],2)
 df = df.replace(np.nan, 0)
 df = df[['Date','Open', 'High', 'Low', 'Close', 'Adj_Close', 'Volume', 'Anomaly_Flag', 'Yesterday_Close', 'Percentage_Change']]
