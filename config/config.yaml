@@ -1,0 +1,4 @@
+base_model:
+  contamination: 0.15
+
+columns: ['Open', 'High', 'Low', 'Close', 'Adj_Close', 'Volume']
