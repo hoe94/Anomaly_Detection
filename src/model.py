@@ -60,12 +60,12 @@ def main():
     anomaly_model = IsolationForest(n_estimators = 100, contamination = 0.10, max_samples = mbb_len, max_features = 6) 
 
     df = data_preprocessing(mbb, column_list)
-    anomaly_model.fit(df)
-    pred = pd.Series(anomaly_model.predict(df))
+    anomaly_model.fit(df.values)
+    pred = pd.Series(anomaly_model.predict(df.values))
     df = df.merge(pred.rename('Anomaly_Flag'), left_index = True, right_index = True)
     df = data_enrichment(mbb, df)
     with open('./models/anomaly_model.pkl', 'wb')as file:
-        pickle.dump(df, file)
+        pickle.dump(anomaly_model, file)
     df.to_csv('./data/results.csv', index = False)
 
 if __name__ == "__main__":
