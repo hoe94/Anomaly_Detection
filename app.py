@@ -109,7 +109,7 @@ layout = dict(
 fig = go.Figure(data=[Normal, Anomaly, table], layout = layout)
 fig_JSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
-
+#webapp
 app = Flask(__name__, template_folder = './templates')
 @app.route('/')
 def index():
