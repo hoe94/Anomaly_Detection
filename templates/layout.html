@@ -1,10 +1,57 @@
 {% extends "index.html" %}
 {% block content %}
     <div class = "site-header-logo">
-        <h3 class = "text-center">Anomaly Detection for Maybank (1155) Bursa Stock Market price in Covid Period</h3>
+        <h3 class = "text-center" id = "title">Anomaly Detection for Maybank (1155) Bursa Stock price in Covid Period</h3>
     </div>
 
     <div id="chart1"></div>
+
+    <div class="text-center">
+        <div class=" border border-dark p-1 mb-2"  id = "text-content"> <h5>Project Description </h5> </div>
+        <p>
+            In this project, we built a ML model to perform the <strong>Anomaly Detection</strong> on Maybank stock price in Covid period (18th March 2020 - Now).
+            The <strong>objective</strong> of this project is, to capture the anomaly/outlier by using Isolation Forest Algorithm.
+            We tuned the model to assume 10% data are anomalies among the data.
+            User can observed that the red markers represents the anomaly/outlier in the line graph.
+            Besides, user can check the closing price on the selected date. 
+            And the Percentage_Change% column describes the difference of stock price within 2 days in percentage%.
+            For example, Closing stock price for 28/4 is RM9.04, and the stock price is RM9.07.
+            Which means that it increase 0.33% on the stock price.
+             <br>
+        </p>
+        <table style="width:100%">
+            <tr>
+              <th>Table Row Color</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>Red</td>
+              <td>Anomaly Data</td>
+            </tr>
+            <tr>
+              <td>Purple</td>
+              <td>Normal Data</td>
+            </tr>
+          </table>
+    </div>
+
+    <br>
+
+    <div class="footer">
+        <div class="content">
+            <h4 id = 'disclaimer'>Disclaimer</h4>
+            <p>
+                This is the porfolio project for <strong>Education purpose</strong> only.
+                The content of this project is not intended as investment advice.
+                Please be responsible with your own investing decision.
+                Any action you take upon the information is at your own risk. <br>
+                <strong>The Author is not responsible for any trading losses.</strong>
+            </p>
+            <p>@ Copyright 2022. All rights reserverd and credit to Low Kim Hoe</p>
+            <a href = "https://github.com/hoe94">GitHub</a>
+            <a href = "https://www.linkedin.com/in/ericlowkimhoe/">Linkedin</a> <br>
+        </div>
+    </div>
 
     <!--plotly CDN-->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>

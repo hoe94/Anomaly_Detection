@@ -1,0 +1,29 @@
+h5, h4{
+    font-weight: bold;
+}
+
+p {
+    font-size: 20px;
+}
+
+#text-content {
+    background: #f7f55a ;
+    overflow: hidden;
+  }
+
+.content{
+    text-align:center;
+    
+ }
+
+ table, th, td {
+    border:1px solid black;
+  }
+
+th {
+      background-color: #e4def9;
+  }
+
+#disclaimer{
+    background-color:   #de6860 ;
+}
