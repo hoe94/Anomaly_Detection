@@ -15,7 +15,7 @@ query_string = """
 SELECT *
 FROM `tsf-project-344410.Dataset.mbb` 
 WHERE Date >= '2020-03-18'
-ORDER BY Date ASC
+ORDER BY Date DESC
 """
 
 df = (
@@ -24,6 +24,7 @@ df = (
     .to_dataframe(create_bqstorage_client = True,)
 )
 
-fig = px.line(df, x = 'Date', y = 'Close', title = 'Maybank Stock Price Line Graph')
-fig_JSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-print(json.loads(fig_JSON))
+#fig = px.line(df, x = 'Date', y = 'Close', title = 'Maybank Stock Price Line Graph')
+#fig_JSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+#print(json.loads(fig_JSON))
+print(df.head())
