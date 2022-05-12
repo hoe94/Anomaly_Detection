@@ -8,8 +8,8 @@ import pickle
 with open('./models/anomaly_model.pkl', 'rb')as file:
     anomaly_model = pickle.load(file)
 
-today = date.today() - timedelta(1)
-#today = date.today()
+#today = date.today() - timedelta(1)
+today = date.today()
 
 #Google Big Query Credentials
 gbq_table = "Dataset.mbb"
