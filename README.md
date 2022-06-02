@@ -53,7 +53,6 @@ Which means that it increase 0.33% on the stock price. <br>
 I plan to host the webapp dashboard at the Heroku PAAS at the beginning. Due to the security issue, I have removed the webapp from heroku.
 
 <img src = "https://github.com/hoe94/Anomaly_Detection/blob/main/front_end_screenshot.png"></img>
-![Webapp Dashboard](https://github.com/hoe94/Anomaly_Detection/blob/main/Flask_Webapp_GIF.gif)
 
 ### Disclaimer:
 This is the porfolio project for <strong>Education purpose</strong> only.
