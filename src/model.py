@@ -18,7 +18,8 @@ bigquery_client = bigquery.Client(credentials = credentials)
 query_string = """
 SELECT *
 FROM `tsf-project-344410.Dataset.mbb`
-WHERE Date >= '2020-03-18'
+--WHERE Date >= '2020-03-18'
+WHERE Date >= '2022-01-01'
 ORDER BY Date ASC
 """
 
@@ -26,19 +27,25 @@ mbb = (
      bigquery_client.query(query_string)
      .result()
      .to_dataframe(create_bqstorage_client = True,))
-
+     
+mbb['Date'] = pd.to_datetime(mbb['Date'])
 #@hydra.main(config_path="../config", config_name="config")
 #def isolation_forest_model(config: DictConfig):
 #    contamination = config.base_model.contamination
 #    mbb_len = mbb.shape[0]
 #    anomaly_model = IsolationForest(n_estimators = 100, contamination = contamination, max_samples = mbb_len, max_features = 6) 
 #    return anomaly_model
+def data_preprocessing(df: pd.DataFrame, Date1, Date2, column_list: list):
+    train_df = df[df['Date'] <= Date1]
+    test_df = df[df['Date'] > Date2]
+    
+    train_df = train_df[column_list]
+    train_df.reset_index(drop = True, inplace = True)
 
-def data_preprocessing(df: pd.DataFrame, column_list: list):
-    df = df[column_list]
-    df.reset_index(drop=True, inplace=True)
-    return df
-   
+    test_df = test_df[column_list]
+    test_df.reset_index(drop = True, inplace = True)
+    return train_df, test_df
+
 def data_enrichment(df1: pd.DataFrame, df2: pd.DataFrame):
     date = df1['Date'].reset_index(drop = True)
     df = df2.merge(date.rename('Date'), left_index = True, right_index = True)
@@ -59,14 +66,14 @@ def main():
     mbb_len = mbb.shape[0]
     anomaly_model = IsolationForest(n_estimators = 100, contamination = 0.10, max_samples = mbb_len, max_features = 6) 
 
-    df = data_preprocessing(mbb, column_list)
-    anomaly_model.fit(df.values)
-    pred = pd.Series(anomaly_model.predict(df.values))
-    df = df.merge(pred.rename('Anomaly_Flag'), left_index = True, right_index = True)
-    df = data_enrichment(mbb, df)
-    with open('./models/anomaly_model.pkl', 'wb')as file:
+    train_df, test_df = data_preprocessing(mbb, '2022-03-31', '2022-04-01', column_list)
+    anomaly_model.fit(train_df.values)
+    pred = pd.Series(anomaly_model.predict(test_df.values))
+    test_df = test_df.merge(pred.rename('Anomaly_Flag'), left_index = True, right_index = True)
+    test_df = data_enrichment(mbb, test_df)
+    with open('./models/anomaly_model_v2.pkl', 'wb')as file:
         pickle.dump(anomaly_model, file)
-    df.to_csv('./data/results.csv', index = False)
+    test_df.to_csv('./data/results_v2.csv', index = False)
 
 if __name__ == "__main__":
     main()
