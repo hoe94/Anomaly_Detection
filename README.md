@@ -50,6 +50,9 @@ Besides, user can check the closing price on the selected date in the below tabl
 And the Percentage_Change% column describes the difference of stock price within 2 days in percentage%.
 For example, Closing stock price for 28/4 is RM9.04, and the stock price is RM9.07.
 Which means that it increase 0.33% on the stock price. <br>
+I plan to host the webapp dashboard at the Heroku PAAS at the beginning. Due to the security issue, I have removed the webapp from heroku.
+
+<img src = "https://github.com/hoe94/Anomaly_Detection/blob/main/front_end_screenshot.png"></img>
 
 ### Disclaimer:
 This is the porfolio project for <strong>Education purpose</strong> only.
