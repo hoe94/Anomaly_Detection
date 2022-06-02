@@ -1,3 +1,4 @@
 anomaly_env
 config
 data
+src/batch_prediction_gcp.py
